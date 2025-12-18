@@ -52,19 +52,22 @@ function renderGifts(gifts) {
       <td>${gift.name}</td>
       <td>${gift.description || ''}</td>
       <td class="${statusClass}">${statusText}</td>
-      <td>
+      <td class="actions-cell">
         ${
           gift.is_locked
             ? ''
             : `
-          <input
-            type="text"
-            placeholder="Tu nombre"
-            data-input-id="${gift.id}"
-          />
-          <button class="btn-primary" data-btn-id="${gift.id}">
-            Lo llevo
-          </button>
+          <div>
+            <input
+              type="text"
+              placeholder="Tu nombre"
+              data-input-id="${gift.id}"
+              style="margin-bottom: 8px;"
+            />
+            <button class="btn-primary" data-btn-id="${gift.id}">
+              Lo llevo
+            </button>
+          </div>
         `
         }
       </td>
