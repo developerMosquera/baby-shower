@@ -1,7 +1,8 @@
-// 🔑 Configura tus datos de Supabase aquí
-const supabaseUrl = 'https://sdcckdcxseomuosgjcca.supabase.co';           // por ej: https://abcxyz.supabase.co
+const supabaseUrl = 'https://sdcckdcxseomuosgjcca.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNkY2NrZGN4c2VvbXVvc2dqY2NhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU0MDMyNzAsImV4cCI6MjA4MDk3OTI3MH0.sqRECVVcIFXXov7Ff5n0iifwLFLKZewoWuXE9YexU5I';      // anon public key
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+const { createClient } = window.supabase;
+const supabaseClient = createClient(supabaseUrl, supabaseKey);
 
 const tbody = document.getElementById('gifts-tbody');
 const errorMessage = document.getElementById('error-message');
@@ -20,7 +21,7 @@ function clearError() {
 async function loadGifts() {
   clearError();
 
-  const { data, error } = await supabase
+  const { data, error } = await supabaseClient
     .from('gifts')
     .select('*')
     .order('id', { ascending: true });
@@ -95,7 +96,7 @@ async function assignGift(id, name) {
   clearError();
 
   // Actualizamos solo si aún no está bloqueado (is_locked = false)
-  const { data, error } = await supabase
+  const { data, error } = await supabaseClient
     .from('gifts')
     .update({
       assigned_to: name,
