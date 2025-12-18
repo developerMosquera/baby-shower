@@ -55,19 +55,17 @@ function renderGifts(gifts) {
       <td class="actions-cell">
         ${
           gift.is_locked
-            ? ''
+            ? '<br>¡Gracias por tu aporte!&#10084;</br>'
             : `
-          <div>
-            <input
-              type="text"
-              placeholder="Tu nombre"
-              data-input-id="${gift.id}"
-              style="margin-bottom: 8px;"
-            />
-            <button class="btn-primary" data-btn-id="${gift.id}">
-              Lo llevo
-            </button>
-          </div>
+          <input
+            type="text"
+            placeholder="Tu nombre"
+            data-input-id="${gift.id}"
+            style="margin-bottom: 5px;"
+          />
+          <button class="btn-primary" data-btn-id="${gift.id}">
+            Lo llevo
+          </button>
         `
         }
       </td>
